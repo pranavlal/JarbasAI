@@ -929,6 +929,8 @@ class MycroftSkill(object):
         self.settings.store()
         self.settings.is_alive = False
         # removing events
+        self.emitter.remove('enable_intent', self.handle_enable_intent)
+        self.emitter.remove('disable_intent', self.handle_disable_intent)
         for e, f in self.events:
             self.emitter.remove(e, f)
         self.events = None  # Remove reference to wrappers
